@@ -1,0 +1,25 @@
+# Log files
+*.log
+
+# Auxiliary and output files
+*.aux
+*.out
+*.synctex.gz
+*.toc
+
+# Visual Studio specific files and directories
+.vs/
+*.vcxproj.user
+*.vcxproj.FileListAbsolute.txt
+
+# Build and intermediate files
+*.tlog/
+*.exe
+*.exe.recipe
+*.ilk
+*.obj
+*.pdb
+*.idb
+
+# Ignore all .pdb files
+*.pdb
