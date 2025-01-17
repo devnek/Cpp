@@ -92,13 +92,11 @@ As programs grow in complexity, it becomes essential to modularize the code by c
 Remember, the architecture and complexity of a C program can vary significantly depending on the specific application and requirements. The outline is a general overview of a simple C program's structure.
 
 
-Explain the First C program:
-To write the first C program, open the C console and write the following code:
-AD
-
-Code:
+\section{First Program}
 
 \lstinputlisting[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]{code/firstProgram.cpp}
+
+
 Let us first study the various parts of this C program:
 
 \subsection{\#include <stdio.h>:}
@@ -122,32 +120,17 @@ After compilation and execution, this C program will quit with a status code 0 a
 The "Hello, C Language" program is frequently used as an introduction to a new programming language since it introduces learners to essential concepts such as text output and the structure of a C program and provides a rapid way to validate that the working environment is correctly set up.
 
 To write, compile, and run your first C program, follow these steps:
-Step 1: Open a text editor
+\begin{enumerate}
+	\item \textbf{Open a text editor} Open a text editor of your choice, such as Notepad, Sublime Text, or Visual Studio Code. It will be where you write your C code.
+	\item \textbf{Write the C program} Now, copy and paste the following code into the text editor:
+	\lstinputlisting[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]{code/firstProgram.cpp}
+	\item \textbf{Save the file} After that, save the file with a .c extension such as first\_program.c. This extension indicates that it is a C source code file.
+	\item \textbf{Compile the program} Now, compile the program in the command prompt.
+	\item \textbf{Run the program} After successful compilation, you can run the program by executing the generated executable file. Enter the following command into the terminal or command.
+\end{enumerate}
 
-Open a text editor of your choice, such as Notepad, Sublime Text, or Visual Studio Code. It will be where you write your C code.
-
-Step 2: Write the C program
-
-Now, copy and paste the following code into the text editor:
-
-#include <stdio.h>  
-int main() {  
-	printf("Hello, C Language");  
-	return 0;  
-}  
-Step 3: Save the file
-
-After that, save the file with a .c extension such as first_program.c. This extension indicates that it is a C source code file.
-
-Step 4: Compile the program
-
-Now, compile the program in the command prompt.
-
-Step 5: Run the program
-
-After successful compilation, you can run the program by executing the generated executable file. Enter the following command into the terminal or command prompt:
-
-./first_program  
+prompt:
+./first\_program
 The program will execute, and you will see the output on the console:
 
 Output:
