@@ -1,40 +1,3 @@
-\documentclass[11pt]{article}
-
-% Packages
-\usepackage{amsmath}     % For mathematical symbols and equations
-\usepackage{graphicx}    % For including images
-\usepackage{hyperref}    % For hyperlinks
-\usepackage{geometry}    % For adjusting page dimensions
-\usepackage{listings}
-\usepackage{xcolor}
-\usepackage{titlesec}
-%\usepackage{plantuml}
-\usepackage{svg}
-%\usepackage{currfile}
-\geometry{a4paper, margin=1in}
-
-% Title and Author
-\title{C programming}
-\author{Deva}
-\date{\today}
-
-% Define a custom command for the listings settings
-
-\lstdefinestyle{myStyle}{
-	belowcaptionskip=1\baselineskip,
-	breaklines=true,
-	frame=none,
-	numbers=none,
-	basicstyle=\footnotesize\ttfamily,
-	keywordstyle=\bfseries\color{green!40!black},
-	commentstyle=\itshape\color{purple!40!black},
-	identifierstyle=\color{blue},
-	backgroundcolor=\color{gray!10!white},
-}
-
-\begin{document}
-\maketitle
-\tableofcontents
 \section{History}
 History of C language is interesting to know. Here we are going to discuss a brief history of the c language.
 
@@ -94,7 +57,7 @@ Remember, the architecture and complexity of a C program can vary significantly 
 
 \section{First Program}
 
-\lstinputlisting[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]{code/firstProgram.cpp}
+\lstinputlisting[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]{chap1/code/firstProgram.cpp}
 
 
 Let us first study the various parts of this C program:
@@ -123,19 +86,17 @@ To write, compile, and run your first C program, follow these steps:
 \begin{enumerate}
 	\item \textbf{Open a text editor} Open a text editor of your choice, such as Notepad, Sublime Text, or Visual Studio Code. It will be where you write your C code.
 	\item \textbf{Write the C program} Now, copy and paste the following code into the text editor:
-	\lstinputlisting[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]{code/firstProgram.cpp}
+	\lstinputlisting[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]{chap1/code/firstProgram.cpp}
 	\item \textbf{Save the file} After that, save the file with a .c extension such as first\_program.c. This extension indicates that it is a C source code file.
 	\item \textbf{Compile the program} Now, compile the program in the command prompt.
 	\item \textbf{Run the program} After successful compilation, you can run the program by executing the generated executable file. Enter the following command into the terminal or command.
 \end{enumerate}
 
 prompt:
-./first\_program
+\texttt{./first\_program}
 The program will execute, and you will see the output on the console:
 
 Output:
-
-Hello, C Language
-
-
-\end{document}
+\begin{lstlisting}[caption=Bash, label={lst:listing-cpp}, language=bash, style=myStyle]
+	Hello, C Language
+\end{lstlisting}

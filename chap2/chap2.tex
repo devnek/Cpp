@@ -1,0 +1,122 @@
+\section{Header Files}
+
+Header files in C are files with a \texttt{`.h`} extension that contain function declarations, macro definitions, type definitions, and other information that you want to share across multiple source files. They are used to promote code modularity and reusability by separating declarations from their implementations.
+
+\subsection{ Why Use Header Files?}
+\begin{enumerate}
+	\item\textbf{Reusability:} You can reuse the declarations in multiple programs without rewriting them.
+	\item\textbf{Modularity:} Code becomes more organized by separating interface (declarations) from implementation (definitions).
+	\item\textbf{Readability:} Header files make your codebase easier to understand by summarizing what a program provides.
+	\item\textbf{Maintenance:} If you need to update a function's interface, you only have to modify the header file.
+\end{enumerate}
+
+
+\subsection{ How Header Files Work}
+\subsubsection*{Inclusion in Source Files:  }
+A header file is included in a source file \texttt{(`.c`) }using the \texttt{`\#include`} directive. For example:
+\begin{lstlisting}[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]
+#include "my_header.h"
+\end{lstlisting}
+
+This literally copies the contents of the header file into the source file at compile time.
+
+\subsubsection{Guards Against Multiple Inclusions:  }
+Use \textbf{include guards} or \texttt{`\#pragma once`} to prevent a header file from being included multiple times in the same program, which would lead to errors. For example:
+```c
+\begin{lstlisting}[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]
+#ifndef HEADER\_FILE\_NAME\_H
+#define HEADER\_FILE\_NAME\_H
+
+// Declarations go here
+
+#endif // HEADER\_FILE\_NAME\_H
+\end{lstlisting}
+
+\subsubsection{Separation of Declaration and Definition:}  
+- Declaration: A function or variable is declared in the header file. For example:
+
+\begin{lstlisting}[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]
+	int add(int a, int b); // Declaration
+\end{lstlisting}
+- Definition: The actual implementation of the function is written in a source file. For example:
+\begin{lstlisting}[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]
+int add(int a, int b) {
+	return a + b;
+}
+\end{lstlisting}
+
+
+\subsection{ Types of Header Files}
+\subsubsection{1. Standard Header Files:  }
+These are built into the C Standard Library and include:
+\begin{itemize}
+	\item\textbf{\texttt{`<stdio.h>`}} for input/output functions.
+	\item\textbf{\texttt{`<stdlib.h>`}} for general utilities like memory allocation.
+	\item\textbf{\texttt{`<string.h>`}} for string manipulation functions.
+	\item\textbf{\texttt{`<math.h>`}} for mathematical operations.
+\end{itemize}
+
+Example:
+\begin{lstlisting}[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]
+#include <stdio.h>
+printf("Hello, World!\n");
+\end{lstlisting}
+
+\subsubsection{2. Custom Header Files: } 
+These are user-defined and created for modular code. You can define your own functions, macros, or constants and include them in your projects.
+
+
+\subsubsection{ Example of How Header Files Work}
+
+Here’s a simple example to understand the concept:
+
+ Custom Header File: \texttt{`my\_header.h`}
+
+\begin{lstlisting}[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]
+#ifndef MY_HEADER_H
+#define MY_HEADER_H
+
+// Function declaration
+int square(int x);
+
+#endif // MY_HEADER_H
+\end{lstlisting}
+
+
+ Implementation File: \texttt{`my\_header.c`}
+
+\begin{lstlisting}[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]
+	#include "my_header.h"
+
+int square(int x) {
+	return x * x;
+}
+\end{lstlisting}
+
+ Main File: `main.c`
+\begin{lstlisting}[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]
+#include <stdio.h>
+#include "my_header.h"
+
+int main() {
+	int number = 5;
+	printf("Square of %d is %d\n", number, square(number));
+	return 0;
+}
+\end{lstlisting}
+
+ Compilation and Execution
+\begin{lstlisting}[caption=Bash, label={lst:listing-cpp}, language=bash, style=myStyle]
+	gcc main.c my\_header.c -o program
+\end{lstlisting}
+
+\subsection{ Best Practices for Header Files}
+
+\begin{enumerate}
+	\item\textbf{Use Include Guards or \texttt{`\#pragma once`}} Prevent multiple inclusions to avoid compiler errors.
+	\item\textbf{Keep Headers Lightweight} Avoid putting large implementations in the header file—use them only for declarations.
+	\item\textbf{Group Related Declarations} Group functions, macros, and type definitions logically for better organization.
+	\item\textbf{Document the Header File} Provide comments to explain the purpose of each declaration for clarity.
+\end{enumerate}
+
+Header files are a cornerstone of clean and maintainable C programming. They are especially useful in large projects to manage code complexity and allow teamwork by separating interfaces from implementations.

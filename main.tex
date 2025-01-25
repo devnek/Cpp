@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{amsmath}     % For mathematical symbols and equations
+\usepackage{graphicx}    % For including images
+\usepackage{hyperref}    % For hyperlinks
+\usepackage{geometry}    % For adjusting page dimensions
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{titlesec}
+%\usepackage{plantuml}
+\usepackage{svg}
+%\usepackage{currfile}
+\geometry{a4paper, margin=1in}
+
+% Title and Author
+\title{C programming}
+\author{Deva}
+\date{\today}
+
+% Define a custom command for the listings settings
+
+\lstdefinestyle{myStyle}{
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=none,
+	numbers=none,
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	backgroundcolor=\color{gray!10!white},
+}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\include{chap1/chap1.tex}
+\include{chap2/chap2.tex}
+\end{document}
