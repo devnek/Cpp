@@ -36,7 +36,7 @@ Use \textbf{include guards} or \texttt{`\#pragma once`} to prevent a header file
 - Declaration: A function or variable is declared in the header file. For example:
 
 \begin{lstlisting}[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]
-	int add(int a, int b); // Declaration
+int add(int a, int b); // Declaration
 \end{lstlisting}
 - Definition: The actual implementation of the function is written in a source file. For example:
 \begin{lstlisting}[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]
@@ -86,7 +86,7 @@ int square(int x);
  Implementation File: \texttt{`my\_header.c`}
 
 \begin{lstlisting}[caption=Example C++, label={lst:listing-cpp}, language=C++, style=myStyle]
-	#include "my_header.h"
+#include "my_header.h"
 
 int square(int x) {
 	return x * x;
@@ -107,7 +107,7 @@ int main() {
 
  Compilation and Execution
 \begin{lstlisting}[caption=Bash, label={lst:listing-cpp}, language=bash, style=myStyle]
-	gcc main.c my\_header.c -o program
+gcc main.c my_header.c -o program
 \end{lstlisting}
 
 \subsection{ Best Practices for Header Files}
@@ -120,3 +120,52 @@ int main() {
 \end{enumerate}
 
 Header files are a cornerstone of clean and maintainable C programming. They are especially useful in large projects to manage code complexity and allow teamwork by separating interfaces from implementations.
+
+\section{Exercise: Using Custom Header Files}
+
+This exercise will guide you in creating and using a custom header file in C.
+
+\subsection{Task}
+1. Create a header file \texttt{math\_operations.h} that declares two functions:
+\begin{itemize}
+	\item A function to add two integers.
+	\item A function to multiply two integers.
+\end{itemize}
+
+2. Implement the functions in \texttt{math\_operations.c}.
+
+3. Write a \texttt{main.c} program that uses these functions to perform operations and print the results.
+
+\subsection{Solution}
+
+\subsubsection{Header File: \texttt{math\_operations.h}}
+\lstinputlisting[caption={math\_operations.h}, label={lst:listing-cpp}, language=C++, style=myStyle]{chap2/code/math_operations.h}
+
+\subsubsection{Source File: \texttt{math\_operations.c}}
+\lstinputlisting[caption={math\_operations.c}, label={lst:listing-cpp}, language=C++, style=myStyle]{chap2/code/math_operations.c}
+
+\subsubsection{Main Program: \texttt{main.c}}
+\lstinputlisting[caption={main.c}, label={lst:listing-cpp}, language=C++, style=myStyle]{chap2/code/main.c}
+
+\subsection{Compilation and Execution}
+Compile and run the program using the following commands:
+\begin{lstlisting}[language=bash, caption={Compilation and Execution Commands}]
+gcc main.c math_operations.c -o program
+./program
+\end{lstlisting}
+
+\subsection{Expected Output}
+\begin{verbatim}
+Enter the first number: 5
+Enter the second number: 10
+Sum: 15
+Product: 50
+\end{verbatim}
+
+\section{Best Practices for Header Files}
+\begin{itemize}
+	\item Use include guards or \texttt{\#pragma once} to prevent multiple inclusions.
+	\item Keep header files lightweight by avoiding large implementations.
+	\item Group related declarations logically.
+	\item Add comments to improve readability and maintainability.
+\end{itemize}

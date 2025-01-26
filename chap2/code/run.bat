@@ -1,0 +1,1 @@
+gcc main.c math_operations.c -o program

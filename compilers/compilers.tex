@@ -1,0 +1,197 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{longtable}
+
+% Page Layout
+\geometry{margin=1in}
+
+% Code Styling
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	keywordstyle=\color{blue}\bfseries,
+	stringstyle=\color{green!60!black},
+	commentstyle=\color{gray},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=10pt,
+	backgroundcolor=\color{gray!10},
+	frame=single,
+	breaklines=true,
+	tabsize=4,
+	captionpos=b
+}
+
+\title{Overview of C/C++ Compilers}
+\author{Deva Nayak}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction to C/C++ Compilers}
+A compiler translates human-readable C/C++ source code into machine-readable executable code. Compilers are essential for creating applications and are specific to platforms, operating systems, and sometimes hardware.
+
+\subsection{Key Features of a Compiler}
+\begin{itemize}
+	\item Converts source code into machine code.
+	\item Ensures platform-specific compatibility.
+	\item Provides debugging, optimization, and error diagnostics.
+\end{itemize}
+
+---
+
+\section{Compilers by Operating Systems}
+
+\subsection{Linux}
+\begin{itemize}
+\item \textbf{GCC (GNU Compiler Collection):}
+\begin{itemize}
+	\item Open-source and widely used for C and C++.
+	\item Rich debugging and optimization options.
+\end{itemize}
+Example Command:
+\begin{lstlisting}[language=bash]
+gcc -o program program.c
+g++ -o program program.cpp
+\end{lstlisting}
+
+\item \textbf{Clang (LLVM):}
+\begin{itemize}
+	\item Modern, fast, and modular compiler.
+	\item Compatible with GCC commands.
+\end{itemize}
+Example Command:
+\begin{lstlisting}[language=bash]
+clang -o program program.c
+clang++ -o program program.cpp
+\end{lstlisting}
+\end{itemize}
+
+\subsection{Windows}
+\begin{itemize}
+\item \textbf{MinGW (Minimalist GNU for Windows):}
+\begin{itemize}
+	\item GCC-based compiler for Windows.
+	\item Lightweight and straightforward.
+\end{itemize}
+Example Command:
+\begin{lstlisting}[language=bash]
+gcc -o program.exe program.c
+\end{lstlisting}
+
+\item \textbf{Microsoft Visual C++ (MSVC):}
+\begin{itemize}
+	\item Part of Visual Studio.
+	\item Provides advanced debugging tools and Windows optimization.
+\end{itemize}
+Example Command:
+\begin{lstlisting}[language=bash]
+cl /EHsc program.cpp
+\end{lstlisting}
+
+\item \textbf{Cygwin:}
+\begin{itemize}
+	\item Unix-like environment for Windows with GCC support.
+\end{itemize}
+\end{itemize}
+
+\subsection{macOS}
+\begin{itemize}
+\item \textbf{Clang (Default):}
+\begin{itemize}
+	\item Comes with Xcode tools.
+	\item Optimized for macOS.
+\end{itemize}
+Example Command:
+\begin{lstlisting}[language=bash]
+clang -o program program.c
+clang++ -o program program.cpp
+\end{lstlisting}
+
+\item \textbf{GCC:}
+\begin{itemize}
+	\item Available via Homebrew.
+\end{itemize}
+Example Command:
+\begin{lstlisting}[language=bash]
+brew install gcc
+gcc-<version> -o program program.c
+\end{lstlisting}
+\end{itemize}
+
+---
+
+\section{Compilers for Embedded Targets}
+
+\subsection{ARM (Embedded Systems)}
+\begin{itemize}
+\item \textbf{ARM GCC (GNU Arm Embedded Toolchain):}
+\begin{itemize}
+	\item Free, open-source compiler for ARM Cortex-M boards.
+\end{itemize}
+Example Command:
+\begin{lstlisting}[language=bash]
+arm-none-eabi-gcc -o program.elf program.c
+\end{lstlisting}
+
+\item \textbf{Keil MDK:}
+\begin{itemize}
+	\item Proprietary IDE and compiler for ARM devices.
+\end{itemize}
+
+\item \textbf{IAR Embedded Workbench:}
+\begin{itemize}
+	\item Commercial compiler for embedded systems with advanced optimization.
+\end{itemize}
+\end{itemize}
+
+\subsection{AVR Microcontrollers}
+\begin{itemize}
+\item \textbf{AVR-GCC:}
+\begin{itemize}
+	\item GCC-based compiler for AVR chips (e.g., Arduino).
+\end{itemize}
+Example Command:
+\begin{lstlisting}[language=bash]
+avr-gcc -o program program.c
+\end{lstlisting}
+\end{itemize}
+
+\subsection{ESP32/ESP8266}
+\begin{itemize}
+	\item \textbf{Xtensa GCC Toolchain:}
+	\begin{itemize}
+		\item GCC-based toolchain for ESP32/ESP8266.
+		\item Works with ESP-IDF (Espressif IoT Development Framework).
+	\end{itemize}
+\end{itemize}
+
+\subsection{RISC-V}
+\begin{itemize}
+	\item \textbf{RISC-V GCC Toolchain:}
+	\begin{itemize}
+		\item GCC-based toolchain for RISC-V processors.
+	\end{itemize}
+\end{itemize}
+
+---
+
+\section{Summary of Popular Compilers}
+
+\begin{tabular}{|p{0.18\linewidth}|p{0.18\linewidth}|p{0.30\linewidth}|p{0.26\linewidth}|}
+	\hline
+	\textbf{Compiler} & \textbf{OS} & \textbf{Features} & \textbf{Usage} \\ \hline
+	GCC & Linux, macOS, MinGW & Open-source, cross-platform & General-purpose \\ \hline
+	Clang & macOS, Linux, Windows & Modern, modular, great diagnostics & Performance-critical projects \\ \hline
+	MSVC & Windows & Microsoft-supported, Windows optimization & Windows applications \\ \hline
+	ARM GCC & Cross-platform & Free toolchain for ARM microcontrollers & Embedded systems \\ \hline
+	Keil MDK & Windows & Proprietary, ARM Cortex-M optimization & Professional embedded projects \\ \hline
+	IAR Embedded Workbench & Cross-platform & Highly optimized & Embedded development \\ \hline
+	AVR-GCC & Cross-platform & Open-source for AVR microcontrollers & Arduino projects \\ \hline
+	Xtensa GCC & Cross-platform & Toolchain for ESP32/ESP8266 & IoT development \\ \hline
+\end{tabular}
+\end{document}
