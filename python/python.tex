@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\lstset{
+	backgroundcolor=\color{codebg},
+	basicstyle=\ttfamily,
+	frame=single,
+	breaklines=true,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+\title{Introduction to Python and Virtual Environments}
+\author{}
+\date{}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Introduction to Python}
+	
+	Python is a high-level, interpreted programming language known for its simplicity and readability. It supports multiple programming paradigms, including procedural, object-oriented, and functional programming. Python is widely used in various domains such as web development, data analysis, artificial intelligence, scientific computing, and more.
+	
+	\subsection{Key Features of Python}
+	\begin{itemize}
+		\item \textbf{Easy to Read and Write}: Python's syntax is designed to be readable and straightforward.
+		\item \textbf{Interpreted Language}: Python code is executed line by line, which makes debugging easier.
+		\item \textbf{Dynamic Typing}: Variables in Python do not require an explicit declaration to reserve memory space.
+		\item \textbf{Extensive Standard Library}: Python comes with a rich standard library that supports many common programming tasks.
+		\item \textbf{Community Support}: Python has a large and active community, contributing to a vast ecosystem of libraries and frameworks.
+	\end{itemize}
+	
+	\section{Common Python Libraries by Use Case}
+	
+	\subsection{Web Development}
+	\begin{itemize}
+		\item \textbf{Django}: A high-level Python web framework that encourages rapid development.
+		\item \textbf{Flask}: A micro web framework for building small to medium-sized web applications.
+	\end{itemize}
+	
+	\subsection{Data Analysis}
+	\begin{itemize}
+		\item \textbf{Pandas}: Provides data structures and data analysis tools.
+		\item \textbf{NumPy}: Supports large, multi-dimensional arrays and matrices.
+	\end{itemize}
+	
+	\subsection{Machine Learning}
+	\begin{itemize}
+		\item \textbf{Scikit-learn}: A library for simple and efficient tools for data mining and data analysis.
+		\item \textbf{TensorFlow} and \textbf{PyTorch}: Libraries for deep learning and neural networks.
+	\end{itemize}
+	
+	\subsection{Scientific Computing}
+	\begin{itemize}
+		\item \textbf{SciPy}: Used for scientific and technical computing.
+		\item \textbf{Matplotlib}: A plotting library for creating static, interactive, and animated visualizations.
+	\end{itemize}
+	
+	\subsection{Web Scraping}
+	\begin{itemize}
+		\item \textbf{BeautifulSoup}: A library for parsing HTML and XML documents.
+		\item \textbf{Scrapy}: A framework for extracting data from websites.
+	\end{itemize}
+	
+	\subsection{Automation}
+	\begin{itemize}
+		\item \textbf{Selenium}: A tool for automating web browsers.
+		\item \textbf{PyAutoGUI}: A library for programmatically controlling the mouse and keyboard.
+	\end{itemize}
+	
+	\section{Virtual Environments}
+	
+	A virtual environment in Python is a self-contained directory that contains a Python installation for a particular version along with several additional packages. Virtual environments are useful for:
+	
+	\begin{itemize}
+		\item \textbf{Dependency Management}: Ensures that each project has its own dependencies, avoiding conflicts between projects.
+		\item \textbf{Version Control}: Allows different projects to use different versions of the same library, which is particularly useful when working on multiple projects simultaneously.
+		\item \textbf{Isolation}: Prevents system-wide installations of Python packages, reducing the risk of affecting other projects.
+		\item \textbf{Reproducibility}: Makes it easier to share projects with others, as the environment can be replicated using a \texttt{requirements.txt} file.
+	\end{itemize}
+	
+	\subsection{Creating and Using a Virtual Environment}
+	
+	To create a virtual environment, you can use the \texttt{venv} module, which is included in Python 3.3 and later:
+	
+	\begin{lstlisting}[language=bash]
+		# Create a virtual environment named 'env'
+		python -m venv env
+		
+		# Activate the virtual environment
+		# On Windows
+		.\env\Scripts\activate
+		# On macOS/Linux
+		source env/bin/activate
+		
+		# Deactivate the virtual environment
+		deactivate
+	\end{lstlisting}
+	
+	By using virtual environments, you maintain a clean and efficient workspace for your Python projects, ensuring that each project has the necessary dependencies without interference from others.
+	
+\end{document}

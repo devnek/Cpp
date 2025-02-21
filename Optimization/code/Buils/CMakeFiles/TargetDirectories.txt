@@ -1,0 +1,3 @@
+/mnt/c/PERSONAL/CPP/Optimization/code/Buils/CMakeFiles/loop_unrolling_example.dir
+/mnt/c/PERSONAL/CPP/Optimization/code/Buils/CMakeFiles/edit_cache.dir
+/mnt/c/PERSONAL/CPP/Optimization/code/Buils/CMakeFiles/rebuild_cache.dir

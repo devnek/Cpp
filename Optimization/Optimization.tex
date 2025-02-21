@@ -1,0 +1,233 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{lightgray!20},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{gray},
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=4
+}
+\lstset{style=mystyle}
+
+\begin{document}
+	
+	\title{Code Optimization Techniques}
+	\author{}
+	\date{}
+	\maketitle
+	
+	\section{Introduction}
+	Optimizing code involves a variety of techniques to improve performance, reduce memory usage, or enhance readability. Here are some common optimization techniques:
+	
+	\begin{itemize}
+		\item \textbf{Loop Unrolling}: Increase the loop's body size to reduce the loop overhead.
+		\item \textbf{Memory Alignment}: Align data structures in memory to improve cache utilization.
+		\item \textbf{Inlining Functions}: Use inline functions to reduce the overhead of function calls.
+		\item \textbf{Parallelization}: Use multi-threading or parallel processing to divide tasks.
+		\item \textbf{Algorithm Optimization}: Choose more efficient algorithms and data structures.
+		\item \textbf{Profile-Guided Optimization}: Use profiling tools to identify bottlenecks and optimize them.
+	\end{itemize}
+
+
+	
+	\section{Loop Unrolling}
+	Loop unrolling is a technique used to improve the performance of loops by reducing the overhead of loop control code such as incrementing counters and checking loop termination conditions. By increasing the number of operations performed per iteration, you can often enhance performance, especially if the loop execution time is significant compared to the overhead.
+	
+	\subsection{Example C++ Code with Loop Unrolling}
+	Below is an example of a simple loop performing array addition, followed by its unrolled version. We'll use the \texttt{chrono} library to compare the timings.
+	
+	\subsection{C++ Code}
+	\begin{lstlisting}[language=C++, caption={Loop Unrolling Example}]
+		#include <iostream>
+		#include <vector>
+		#include <chrono>
+		
+		void vector_add(const std::vector<int>& a, const std::vector<int>& b, std::vector<int>& result) {
+			for (size_t i = 0; i < a.size(); ++i) {
+				result[i] = a[i] + b[i];
+			}
+		}
+		
+		void vector_add_unrolled(const std::vector<int>& a, const std::vector<int>& b, std::vector<int>& result) {
+			size_t i = 0;
+			size_t n = a.size();
+			
+			// Unroll the loop by a factor of 4
+			for (; i <= n - 4; i += 4) {
+				result[i] = a[i] + b[i];
+				result[i + 1] = a[i + 1] + b[i + 1];
+				result[i + 2] = a[i + 2] + b[i + 2];
+				result[i + 3] = a[i + 3] + b[i + 3];
+			}
+			
+			// Handle remaining elements
+			for (; i < n; ++i) {
+				result[i] = a[i] + b[i];
+			}
+		}
+		
+		int main() {
+			const size_t size = 1024 * 1024;
+			std::vector<int> a(size, 1), b(size, 2), result(size);
+			
+			auto start = std::chrono::high_resolution_clock::now();
+			vector_add(a, b, result);
+			auto end = std::chrono::high_resolution_clock::now();
+			std::chrono::duration<double> diff = end - start;
+			std::cout << "Normal addition took: " << diff.count() << " s\n";
+			
+			start = std::chrono::high_resolution_clock::now();
+			vector_add_unrolled(a, b, result);
+			end = std::chrono::high_resolution_clock::now();
+			diff = end - start;
+			std::cout << "Unrolled addition took: " << diff.count() << " s\n";
+			
+			return 0;
+		}
+	\end{lstlisting}
+	
+	\subsection{CMake Build Setup}
+	The \texttt{CMakeLists.txt} file remains the same as before, specifying the C++ standard and optimization flags:
+	
+	\begin{lstlisting}[language=Bash, caption={CMake Configuration}]
+		cmake_minimum_required(VERSION 3.10)
+		project(LoopUnrollingExample)
+		
+		set(CMAKE_CXX_STANDARD 11)
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+		
+		add_executable(loop_unrolling_example main.cpp)
+	\end{lstlisting}
+	
+	\subsection{Instructions}
+	\begin{enumerate}
+		\item Save the C++ code in a file named \texttt{main.cpp}.
+		\item Save the CMake configuration in a file named \texttt{CMakeLists.txt}.
+		\item Create a build directory and run the following commands:
+		\begin{lstlisting}[language=bash]
+			mkdir build
+			cd build
+			cmake ..
+			make
+		\end{lstlisting}
+		\item Run the executable \texttt{./loop\_unrolling\_example} to see the timing results.
+	\end{enumerate}
+	
+	This example demonstrates loop unrolling by a factor of 4. Adjust the unrolling factor based on your specific application and hardware capabilities to achieve optimal performance. Keep in mind that excessive unrolling might lead to increased code size, which could negatively impact performance due to cache effects.
+	
+	\section{Memory alignment}
+	Memory alignment can be crucial for performance, particularly when dealing with SIMD instructions or ensuring efficient cache usage. Here's an example demonstrating memory alignment in C++ using the alignas specifier, along with a CMake setup for building the project.
+	
+	\textit{\textbf{Note:}Valgrind is a powerful tool for detecting memory errors, including those related to memory alignment, in C and C++ programs. The below example uses Valgrind to analyze the memory behavior of a sample program. Valgrind is available primarily on Linux and macOS. Windows users can try Dr. Memory or use Valgrind within a Linux virtual machine or Docker container.}
+	
+	\subsection{Example C++ Code for Memory Alignment}
+	We use a C++ program that includes both aligned and unaligned data structures.
+	
+	\subsection{C++ Code}
+	\begin{lstlisting}[language=C++, caption=Memory Alignment Example]
+		#include <iostream>
+		#include <chrono>
+		#include <vector>
+		
+		// Structure without alignment
+		struct UnalignedData {
+			char a;
+			int b;
+			double c;
+		};
+		
+		// Structure with alignment to 32 bytes
+		struct alignas(32) AlignedData {
+			char a;
+			int b;
+			double c;
+		};
+		
+		// Function to process UnalignedData
+		void process_unaligned(std::vector<UnalignedData>& data) {
+			for (auto& element : data) {
+				element.b = (element.b * 2 + 3) % 5;
+			}
+		}
+		
+		// Function to process AlignedData
+		void process_aligned(std::vector<AlignedData>& data) {
+			for (auto& element : data) {
+				element.b = (element.b * 2 + 3) % 5;
+			}
+		}
+		
+		int main() {
+			const size_t size = 1000000;
+			
+			std::vector<UnalignedData> unaligned_data(size);
+			std::vector<AlignedData> aligned_data(size);
+			
+			auto start = std::chrono::high_resolution_clock::now();
+			process_unaligned(unaligned_data);
+			auto end = std::chrono::high_resolution_clock::now();
+			std::chrono::duration<double> elapsed = end - start;
+			std::cout << "Unaligned process time: " << elapsed.count() << " s\n";
+			
+			start = std::chrono::high_resolution_clock::now();
+			process_aligned(aligned_data);
+			end = std::chrono::high_resolution_clock::now();
+			elapsed = end - start;
+			std::cout << "Aligned process time:   " << elapsed.count() << " s\n";
+			
+			return 0;
+		}
+	\end{lstlisting}
+	
+	\subsection{Building the Code}
+	\subsection{Creating a CMakeLists.txt File}
+	Use the following CMake configuration to build the project:
+	\begin{lstlisting}[language=bash, caption=CMake Configuration]
+		cmake_minimum_required(VERSION 3.10)
+		project(MemoryAlignmentExample)
+		
+		set(CMAKE_CXX_STANDARD 11)
+		
+		add_executable(memory_alignment_example main.cpp)
+	\end{lstlisting}
+	
+	\subsection{Building the Project}
+	Run the following commands:
+	\begin{lstlisting}[language=bash, caption=Building the Project]
+		mkdir -p build
+		cd build
+		cmake ..
+		make
+	\end{lstlisting}
+	
+	\subsection{Running Valgrind}
+	Use the following command to run Valgrind on the compiled executable:
+	\begin{lstlisting}[language=bash, caption=Running Valgrind]
+		valgrind --tool=memcheck --leak-check=full ./memory_alignment_example
+	\end{lstlisting}
+	
+	\subsection{Explanation of Valgrind Options}
+	\begin{itemize}
+		\item \textbf{--tool=memcheck}: Uses the Memcheck tool to detect memory errors.
+		\item \textbf{--leak-check=full}: Provides detailed memory leak information.
+	\end{itemize}
+	
+	\subsection{Interpreting Valgrind Output}
+	Valgrind detects:
+	\begin{itemize}
+		\item Memory leaks (allocated but not freed memory)
+		\item Invalid memory accesses
+		\item Usage of uninitialized memory
+	\end{itemize}
+	
+\end{document}
