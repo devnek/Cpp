@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\PERSONAL\Cpp\virtualFunctions\graphics\virtshap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\PERSONAL\Cpp\virtualFunctions\graphics\msoftcon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\PERSONAL\Cpp\virtualFunctions\graphics\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E17A6E0C-6153-3D52-850F-DF87691F9617}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
