@@ -23,3 +23,7 @@
 
 # Ignore all .pdb files
 *.pdb
+
+# CMake and
+**/CMakeFiles/
+**/CMakeCache.txt
