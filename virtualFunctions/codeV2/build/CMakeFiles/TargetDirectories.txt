@@ -1,0 +1,3 @@
+/mnt/c/PERSONAL/Cpp/virtualFunctions/codeV2/build/CMakeFiles/notvirt.dir
+/mnt/c/PERSONAL/Cpp/virtualFunctions/codeV2/build/CMakeFiles/edit_cache.dir
+/mnt/c/PERSONAL/Cpp/virtualFunctions/codeV2/build/CMakeFiles/rebuild_cache.dir
