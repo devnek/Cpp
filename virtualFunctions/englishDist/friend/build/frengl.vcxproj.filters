@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\PERSONAL\Cpp\virtualFunctions\englishDist\friend\frengl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\PERSONAL\Cpp\virtualFunctions\englishDist\friend\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5E11A9D0-04F1-3B08-9EF9-78E015EEA46B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

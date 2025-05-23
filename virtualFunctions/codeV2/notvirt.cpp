@@ -25,11 +25,11 @@ public:
 ////////////////////////////////////////////////////////////////
 class Derv2 : public Base // derived class 2
 {
-public:
-    void show()
-    {
-        cout << "Derv2\n";
-    }
+//public:
+//    void show()
+//    {
+//        cout << "Derv2\n";
+//    }
 };
 ////////////////////////////////////////////////////////////////
 int main()
